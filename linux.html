@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<!--
+Coleman D
+-->
+
+<head>
+  <meta charset="UTF-8">
+  <title>Design Portfolio</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="newstyle.css">
+</head>
+
+<body>
+  <div id="page-container">
+  <header>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <article>
+    <h1>Linux Kernel Mentorship Experience 2022</h1>
+    <p>
+    My mentorship experience with the Linux kernel bug fixing summer 2022 program has been very positive and rewarding. I really appreciate that we are given enough freedom and flexibility to figure things out on our own, but we also have the guidance and support from our mentors, other mentees, as well as other members of the Linux community. It is very enlightening to see everyone in the program grow and improve over the course of the summer.
+    </p>
+    <h2>Challenges and Advice</h2>
+    <p>
+One of the biggest challenges I had to overcome was being able to reliably reproduce syzbot kernel bugs. Some helpful advice I might for anyone else trying to do the same would be to make sure you have a configured virtual machine that can boot your newly compiled kernels and run syzbot reproducer code.
+    </p>
+    <p>
+    I eventually just started using the syzkaller debian9 qemu image described at <a href="https://github.com/google/syzkaller/blob/master/docs/linux/setup_ubuntu-host_qemu-vm_x86-64-kernel.md"> here</a>. I would start the vm with a shell script.
+    </p>
+    <p>
+Make sure you have the syz-execprog and syz-executor available on that VM so you can run the reproducer code. Read the syzkaller documentation, it is extremely important.
+    </p>
+    <p>
+Always use the specific kernel .config for each syzbot bug. Once you have a kernel compiled with the .config from the syzbot bug, start a VM using the newly compiled kernel. At this point you should be ready to try to run the reproducer code. If everything goes well, you should crash your VM and at this point you are ready to start making changes, compiling and booting the new kernel, and testing it here.
+    </p>
+  <h2>What I worked on this summer</h2>
+   <p>
+   The main issue that I really dug into was <a href="https://syzkaller.appspot.com/bug?id=8234a9dfd3aafbf092cc5a7cd9842e3ebc45fc42"> here</a>.
+   </p>
+   <p>
+I was able to analyze this code and come to my initial conclusion by first making sure I could reliably reproduce the bug over and over again. After I was able to reproduce the bug, I dug into the decoded stack trace to find out which pieces of code were being called and in what order. From this I was able to narrow down the problem code to a specific file and line number. At this point I had to put many many printk statements to keep track of what was going on with the problem code.
+   </p>
+   <p>
+After this when I ran my reproducer code, I was starting to get useful information printing out on my console. Eventually it became clear that a very specific variable was causing the issue, and it seemed to be happening only after the reproducer had already done a run of the test code. So something was being set during the first run, but not checked for in subsequent runs.
+   </p>
+   <p>
+Digging into the issue more I realized that there was code in place to unset the variable causing issues but it was in an unreachable else if statement. I found that by moving the code outside the unreachable block that the bug no longer reproduced. I tested the fix with syzbot and I was able to confirm that the problem seemed to be resolved.
+   </p>
+   <p>
+But this was just fixing the syzbot bug, which I found out is not necessarily worth anything of note when you are trying to submit your code to the linux kernel community. Luckily I was able to receive some helpful feedback from Sean Christopherson who realized that there were two separate issues going on and he ended up helping me write two patches, which I was eventually able to get accepted.
+   </p>
+   <h2>Lessons Learned</h2>
+   <p>
+Of all the things I learned in my mentorship experience, I think the most important lesson that I learned is being able to effectively communicate why a fix should be included in the linux kernel. It is one thing to fix a syzbot bug but it is another issue entirely to try to explain to the linux community why this is even a problem that needs to be fixed.
+    </p>
+    <p>
+    Finally, I would like to thank my mentors Shuah Khan and Pavel Skripkin. Thank you for all your advice, support, time, and energy helping guide us through this program.
+    </p>
+  </article>
+
+  </div>
+</body>
+</html>
