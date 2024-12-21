@@ -126,9 +126,16 @@ section:hover{
     transition: .5s ease;
 }
 
-.randomBox {
+.grid-container {
   width: 20px;
   height: 20px;
-  background-color: purple;
+  display: grid;
+  grid-template-columns: auto auto auto;
   z-index: 1;
+}
+
+.grid-container > div {
+  background-color: purple;
+  padding: 5px;
+  margin: 1px;
 }
