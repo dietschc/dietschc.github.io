@@ -24,10 +24,8 @@ function generateRandomBlock() {
     element.appendChild(child);
 
     // Essentially - Do not display random parts of grid to make shapes
-    if (rng % 2 == 0) {
+    if (rng % 2 == 0)
       child.style.opacity = 0;
-      console.log("divisible by 2? ", i);
-    }
 
   }
 
@@ -49,7 +47,7 @@ function makeBlocksContinuosly() {
 
     // Timer function
     const intervalId = setInterval(() => {
-    if (i >= 10) {
+    if (i >= 100) { // make 100 shapes why not
         clearInterval(intervalId); // Stop the loop
     } else {
         generateRandomBlock();
