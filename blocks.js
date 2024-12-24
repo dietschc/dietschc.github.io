@@ -1,6 +1,6 @@
 function generateRandomBlock() {
-  const w = Math.floor(Math.random() * screen.width);
-  const h = Math.floor(Math.random() * screen.height);
+  const w = Math.floor(Math.random() * window.innerWidth);
+  const h = Math.floor(Math.random() * window.innerHeight);
   const s = Math.floor(Math.random() * 20);
 
   let opacity = 1;
@@ -31,7 +31,7 @@ function generateRandomBlock() {
 
   // Fadout function ->
   // Timer function
-    const timer = setInterval((e) => {
+  const timer = setInterval((e) => {
     if (opacity <= 0) {
       clearInterval(timer); // Stop the loop
       element.style.display = "none";
@@ -46,14 +46,14 @@ function makeBlocksContinuosly() {
     let i = 0;
 
     // Timer function
-    const intervalId = setInterval(() => {
+  const intervalId = setInterval(() => {
     if (i >= 100) { // make 100 shapes why not
         clearInterval(intervalId); // Stop the loop
     } else {
         generateRandomBlock();
         i++;
     }
-    }, 5000); // Delay in ms
+  }, 5000); // Delay in ms
 }
 
 // Run this automatically
