@@ -117,6 +117,7 @@ section a {
 #page-container {
     position: relative;
     min-height: 100vh;
+    z-index: 1;
 }
 
 section:hover{
@@ -131,7 +132,7 @@ section:hover{
   height: 20px;
   display: grid;
   grid-template-columns: auto auto auto;
-  z-index: 1;
+  z-index: -1;
 }
 
 .grid-container > div {
