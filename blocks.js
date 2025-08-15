@@ -23,14 +23,12 @@ function generateRandomBlock() {
     const child = document.createElement("div");
     element.appendChild(child);
 
-    // Essentially - Do not display random parts of grid to make shapes
+    // Do not display random parts of grid to make shapes
     if (rng % 2 == 0)
       child.style.opacity = 0;
-
   }
 
-  // Fadout function ->
-  // Timer function
+  // Fadout
   const timer = setInterval((e) => {
     if (opacity <= 0) {
       clearInterval(timer); // Stop the loop
@@ -39,21 +37,21 @@ function generateRandomBlock() {
       opacity -= 0.01;
       element.style.opacity = opacity;
     }
-  }, 200); // Delay in ms
+  }, 50); // Delay in ms
 }
 
 function makeBlocksContinuosly() {
     let i = 0;
 
-    // Timer function
+    // Poor mans infinite loop
   const intervalId = setInterval(() => {
     if (i >= 100) { // make 100 shapes why not
         clearInterval(intervalId); // Stop the loop
     } else {
         generateRandomBlock();
-        i++;
+        // i++; // forever
     }
-  }, 5000); // Delay in ms
+  }, 50); // Delay in ms
 }
 
 // Run this automatically
