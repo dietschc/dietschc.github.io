@@ -39,18 +39,11 @@ function generateRandomBlock() {
   }, 50); // Delay in ms
 }
 
+// Keep making them blocks
 function makeBlocksContinuously() {
-  let i = 0;
-
-  // Poor mans infinite loop
-  const intervalId = setInterval(() => {
-    if (i >= 100) {
-      // make 100 shapes why not
-      clearInterval(intervalId); // Stop the loop
-    } else {
-      generateRandomBlock();
-      // i++; // forever
-    }
+  // Poor mans javascript loop
+  setInterval(() => {
+    generateRandomBlock();
   }, 50); // Delay in ms
 }
 
