@@ -28,7 +28,7 @@ function generateRandomBlock() {
       child.style.opacity = 0;
   }
 
-  // Fadout
+  // Fadeout
   const timer = setInterval((e) => {
     if (opacity <= 0) {
       clearInterval(timer); // Stop the loop
@@ -40,7 +40,7 @@ function generateRandomBlock() {
   }, 50); // Delay in ms
 }
 
-function makeBlocksContinuosly() {
+function makeBlocksContinuously() {
     let i = 0;
 
     // Poor mans infinite loop
@@ -55,5 +55,5 @@ function makeBlocksContinuosly() {
 }
 
 // Run this automatically
-window.onload = makeBlocksContinuosly();
+window.onload = makeBlocksContinuously();
 
