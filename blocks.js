@@ -18,14 +18,13 @@ function generateRandomBlock() {
   container.appendChild(element);
 
   // Add children to grid-container
-  for (let i = 0; i < 9; i++ ) {
+  for (let i = 0; i < 9; i++) {
     const rng = Math.floor(Math.random() * 3);
     const child = document.createElement("div");
     element.appendChild(child);
 
     // Do not display random parts of grid to make shapes
-    if (rng % 2 == 0)
-      child.style.opacity = 0;
+    if (rng % 2 == 0) child.style.opacity = 0;
   }
 
   // Fadeout
@@ -41,19 +40,19 @@ function generateRandomBlock() {
 }
 
 function makeBlocksContinuously() {
-    let i = 0;
+  let i = 0;
 
-    // Poor mans infinite loop
+  // Poor mans infinite loop
   const intervalId = setInterval(() => {
-    if (i >= 100) { // make 100 shapes why not
-        clearInterval(intervalId); // Stop the loop
+    if (i >= 100) {
+      // make 100 shapes why not
+      clearInterval(intervalId); // Stop the loop
     } else {
-        generateRandomBlock();
-        // i++; // forever
+      generateRandomBlock();
+      // i++; // forever
     }
   }, 50); // Delay in ms
 }
 
 // Run this automatically
 window.onload = makeBlocksContinuously();
-
